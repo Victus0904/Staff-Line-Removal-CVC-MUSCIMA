@@ -1,0 +1,8 @@
+torch
+albumentations
+opencv-python
+numpy
+matplotlib
+omrdatasettools
+tqdm
+jupyter

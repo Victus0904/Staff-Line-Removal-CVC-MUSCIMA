@@ -1,28 +1,30 @@
-# Staff-Line-Removal-on-Handwritten-Music-CVC-MUSCIMA-
+# Staff-Line Removal on Handwritten Music (CVC-MUSCIMA)
 
-This project implements a Deep Learning solution for removing staff lines from handwritten music scores using the CVC-MUSCIMA dataset. The model achieves high-precision segmentation to facilitate Optical Music Recognition (OMR) tasks.
+Deep-learning staff-line removal for handwritten music scores, a key preprocessing step for
+**Optical Music Recognition (OMR)**. Trained and evaluated on the CVC-MUSCIMA dataset.
 
-🚀 Key Performance
-IoU: 0.9910
+## Results
 
-Dice Coefficient: 0.9935
+| Metric | Score |
+|---|---|
+| IoU | **0.9910** |
+| Dice coefficient | **0.9935** |
+| Precision | 0.991 |
+| Recall | 0.996 |
 
-Precision: 0.991
+## Technical highlights
 
-Recall: 0.996
+- **Architecture:** UNet for binary segmentation (staff vs. symbol pixels)
+- **Loss:** weighted **Focal + Dice** loss, where Focal handles heavy class imbalance and Dice optimizes overlap
+- **Training:** PyTorch Automatic Mixed Precision (AMP) for faster training and lower VRAM use
+- **Augmentation:** Albumentations pipeline
+- **Post-processing:** adaptive ink extraction and vertical erosion, which keep thin musical symbols intact and give clean, high-contrast output
 
-🛠️ Technical Highlights
-Architecture: UNet-based binary segmentation.
+## Run it
 
-Loss Function: A weighted combination of Focal Loss (to handle class imbalance) and Dice Loss (to optimize overlap).
-
-AMP Training: Utilized PyTorch Automatic Mixed Precision (AMP) for faster training and reduced VRAM usage.
-
-Post-Processing: Implemented Adaptive Ink Extraction and Vertical Erosion to preserve thin musical symbols while ensuring dark, high-contrast outputs.
-
-📊 Results
-💻 Installation
-Bash
-```
+```bash
 pip install -r requirements.txt
+jupyter notebook staff-removal.ipynb
 ```
+
+The dataset is downloaded automatically using `omrdatasettools`.
